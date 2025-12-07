@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qur'aanka Kariimka - Akhri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --accent-color: #ffc107;
+            --text-dark: #333;
+            --bg-card: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .search-container {
+            margin: 25px auto;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            padding-left: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+        }
+
+        .juz-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .juz-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .juz-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .juz-header {
+            background: linear-gradient(to right, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .juz-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .juz-title {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .juz-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Xarunta u dhig xagga dhexe */
+        }
+
+        .juz-description {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: #555;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        /* New button styling for only 'Akhri' */
+        .btn-primary {
+            width: 100%; /* Buuxi booska oo dhan */
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--primary-color);
+            color: white;
+            margin-top: 15px;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .juz-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation for cards */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .juz-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .juz-card:nth-child(1) { animation-delay: 0.1s; }
+        .juz-card:nth-child(2) { animation-delay: 0.2s; }
+        .juz-card:nth-child(3) { animation-delay: 0.3s; }
+        .juz-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Qur'aanka Kariimka</h1>
+            <p class="subtitle">Akhri Juz-yaasha Qur'aanka</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-box" placeholder="Raadi juz...">
+        </div>
+        
+        <div class="juz-container">
+           
+            
+            <!-- juska 1aad -->
+            <div class="juz-card">
+                <div class="juz-header">
+                    <div class="juz-number">1</div>
+                    <div class="juz-title">Juz-ka 1aad</div>
+                </div>
+                <div class="juz-content">
+                    <p class="juz-description">Juz-ka 1aad wuxuu ka bilaabanaa suradda Al-Faatixa iyo suradda Al-Baqara. Waxaa ku jira aayadaha ugu horeeya ee suradda Al-Baqara.</p>
+                    <a href="Html/Juz_1.html" class="btn-primary">
+                        <i class="fas fa-book-open"></i> Akhri
+                    </a>
+                </div>
+            </div>
+            
+            
+         <!--  juska 2aad-->
+            <div class="juz-card">
+                <div class="juz-header">
+                    <div class="juz-number">2</div>
+                    <div class="juz-title">Juz-ka 2aad</div>
+                </div>
+                <div class="juz-content">
+                    <p class="juz-description">Juz-ka 2aad wuxuu ka bilaabanaa aayadda 142<small><sup>aad</sup></small> ee suradda Al-Baqara. Waxaa lagu magacaabaa "سيقول السفهاء".</p>
+                    <a href="Html/Juz_2.html" class="btn-primary">
+                        <i class="fas fa-book-open"></i> Akhri
+                    </a>
+                </div>
+            </div>
+            
+
+          <!-- juska 3aad -->
+            <div class="juz-card">
+                <div class="juz-header">
+                    <div class="juz-number">3</div>
+                    <div class="juz-title">Juz-ka 3aad</div>
+                </div>
+                <div class="juz-content">
+                    <p class="juz-description">Juz-ka 3aad wuxuu ka bilaabanaa aayadda 253<small><sup>aad</sup></small> ee suradda Al-Baqara. Waxaa lagu magacaabaa "تلك الرسل".</p>
+                    <a href="Html/Juz_3.html" class="btn-primary">
+                        <i class="fas fa-book-open"></i> Akhri
+                    </a>
+                </div>
+            </div>
+            
+            
+       <!-- juska 4aad -->
+            <div class="juz-card">
+                <div class="juz-header">
+                    <div class="juz-number">4</div>
+                    <div class="juz-title">Juz-ka 4aad</div>
+                </div>
+                <div class="juz-content">
+                    <p class="juz-description">Juz-ka 4aad wuxuu ka bilaabanaa aayadda 92<small><sup>aad</sup></small> ee suradda Aala-Imraan. Waxaa lagu magacaabaa "كل الطعام".</p>
+                    <a href="Html/Juz_4.html" class="btn-primary">
+                        <i class="fas fa-book-open"></i> Akhri
+                    </a>
+                </div>
+            </div>
+            
+            
+        <!-- juska 16aad -->
+            <div class="juz-card">
+                <div class="juz-header">
+                    <div class="juz-number">16</div>
+                    <div class="juz-title">Juz-ka 16aad</div>
+                </div>
+                <div class="juz-content">
+                    <p class="juz-description">Juz-ka 16aad wuxuu ka bilaabanaa aayadda 73<small><sup>aad</sup></small> ee suradda Al-kahfi. Waxaa lagu magacaabaa "قال الم اقل لّك".</p>
+                    <a href="Html/Juz_16.html" class="btn-primary">
+                        <i class="fas fa-book-open"></i> Akhri
+                    </a>
+                </div>
+            </div>    
+            
+             <!-- juska 17aad -->
+            <div class="juz-card">
+                <div class="juz-header">
+                    <div class="juz-number">17</div>
+                    <div class="juz-title">Juz-ka 17aad</div>
+                </div>
+                <div class="juz-content">
+                    <p class="juz-description">Juz-ka 17aad wuxuu ka bilaabanaa aayadda 1<small><sup>aad</sup></small> ee suradda Al-Anbiya. Waxaa lagu magacaabaa "ٱقترب للنّاس".</p>
+                    <a href="Html/Juz_17.html" class="btn-primary">
+                        <i class="fas fa-book-open"></i> Akhri
+                    </a>
+                </div>
+            </div>    
+            
+            
+            <!-- juska 18aad -->
+            <div class="juz-card">
+                <div class="juz-header">
+                    <div class="juz-number">18</div>
+                    <div class="juz-title">Juz-ka 18aad</div>
+                </div>
+                <div class="juz-content">
+                    <p class="juz-description">Juz-ka 18aad wuxuu ka bilaabanaa aayadda 1<small><sup>aad</sup></small> ee suradda Al-Al-mu'minun. Waxaa lagu magacaabaa "قدْ أَفلح ٱلْمؤمنون".</p>
+                    <a href="Html/Juz_18.html" class="btn-primary">
+                        <i class="fas fa-book-open"></i> Akhri
+                    </a>
+                </div>
+            </div> 
+            
+            
+            
+            
+            
+            <!-- juska 18aad -->
+            <div class="juz-card">
+                <div class="juz-header">
+                    <div class="juz-number">19</div>
+                    <div class="juz-title">Juz-ka 19aad</div>
+                </div>
+                <div class="juz-content">
+                    <p class="juz-description">Juz-ka 19aad wuxuu ka bilaabanaa aayadda 20<small><sup>aad</sup></small> ee suradda Al-Al-furqan. Waxaa lagu magacaabaa <br>"قال الّذين لايرجون".</p>
+                    <a href="Html/Juz_19.html" class="btn-primary">
+                        <i class="fas fa-book-open"></i> Akhri
+                    </a>
+                </div>
+            </div>
+            
+            
+            
+            <!-- fiinaal -->
+        </div>
+
+        <div class="footer">
+            <p>Qur'aanka Kariimka - Dhamaan xuquuqda waa la ilaaliyay &copy; 2023</p>
+        </div>
+    </div>
+
+    <script>
+        // Only keeping search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchBox = document.querySelector('.search-box');
+            searchBox.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const juzCards = document.querySelectorAll('.juz-card');
+                
+                juzCards.forEach(card => {
+                    const title = card.querySelector('.juz-title').textContent.toLowerCase();
+                    const number = card.querySelector('.juz-number').textContent;
+                    
+                    if (title.includes(searchTerm) || number.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
